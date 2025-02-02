@@ -1,0 +1,11 @@
+<sprite>
+    <source>sprites/stage01/sprStage01Joe.png</source>
+    <anim id="0" speed="15.0" loop="true">
+        <frame src="0" x="0" y="0" width="48" height="64" dx="-24" dy="-32"/>
+        <frame src="0" x="48" y="0" width="48" height="64" dx="-24" dy="-32"/>
+    </anim>
+    <anim id="1" speed="15.0" loop="true">
+        <frame src="0" x="96" y="0" width="48" height="64" dx="-24" dy="-32"/>
+        <frame src="0" x="144" y="0" width="48" height="64" dx="-24" dy="-32"/>
+    </anim>
+</sprite>

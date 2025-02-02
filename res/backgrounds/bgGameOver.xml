@@ -1,0 +1,24 @@
+<background>
+<layer
+    idx="0"
+    src="backgrounds/bgGameOver_0.png"
+    hScrollSpeed="5"
+    parallaxScale="0.3"
+/>
+<layer
+    idx="1"
+    src="backgrounds/bgGameOver_1.png"
+    hScrollSpeed="-20"
+    parallaxScale="0.5"
+/>
+<layer
+    idx="2"
+    src="backgrounds/bgGameOver_2.png"
+    hScrollSpeed="10"
+    parallaxScale="0.8"
+/>
+<layer
+    idx="3"
+    src="backgrounds/bgGameOver_3.png"
+/>
+</background>

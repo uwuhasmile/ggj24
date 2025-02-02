@@ -1,0 +1,15 @@
+<dialogue bg="backgrounds/bgJoe.xml">
+    <character src="sprites/dialogue/sprDialogueJoe.xml">Joe</character>
+    <phrase you="false">Stop right here, Deu.</phrase>
+    <phrase you="true">How the hell do you know my name?</phrase>
+    <phrase you="false" emotion="1">Just a cliche.</phrase>
+    <phrase you="true" emotion="2">Ok, Joe. Not average, surprisingly.</phrase>
+    <phrase you="false" emotion="3">(Damn, he can do it too...)</phrase>
+    <phrase emotion="0">Ok, just get out.</phrase>
+    <phrase you="true">Who the hell are you to tell me what to do?</phrase>
+    <phrase emotion="2">Well, whatever... Maybe you'll join my humor team?</phrase>
+    <phrase you="false">Wha...</phrase>\
+    <phrase emotion="0">Bullshit.</phrase>
+    <phrase you="true">Suit yourself then. I'm going past you anyway.</phrase>
+    <phrase you="false" event="0">No, you're not.</phrase>
+</dialogue>

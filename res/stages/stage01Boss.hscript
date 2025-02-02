@@ -1,0 +1,256 @@
+setSprite("sprites/stage01/sprStage01Joe.xml");
+setLayer(0);
+setMask(0);
+setRadius(8.0);
+loadDamageParticles("particles/ptcEnemyDamage.json");
+loadDeathParticles("particles/ptcEnemyDamage.json");
+
+function float() playAnimation(1);
+function fly() playAnimation(0);
+
+moveToByTime(LocalSpace(0.0, 40.0), 1.0, float);
+
+function beginSpecialAttack() {
+    playSound("sounds/sndNoise02.wav");
+    setLayer(0);
+    setBackgroundColor(5, null, null, null, 1.0, 0.2);
+    setBackgroundColor(6, null, null, null, 0.3, 0.2);
+    hideHealthbar();
+}
+
+function stopSpecialAttack() {
+    setLayer(8);
+    setBackgroundColor(5, null, null, null, 0.0, 0.2);
+    setBackgroundColor(6, null, null, null, 0.0, 0.1);
+    showHealthbar(46.0);
+}
+
+function start() {
+    createBulletManager(0);
+    setBulletManagerDestroyWithParent(0, true);
+    loadBulletManagerBullets(0, "sprites/game/sprBullets01.xml");
+    createBulletManager(1);
+    loadBulletManagerBullets(1, "sprites/game/sprBullets01.xml");
+    setBulletManagerDestroyWithParent(1, true);
+    playSound("sounds/sndBulletHighLong.wav");
+    showHealthbar(46.0);
+    fly();
+    moveToByTime(LocalSpace(0.0, 60.0), 0.5, float);
+    setMask(1 | 2);
+    setLayer(8);
+}
+
+function shootMgr0WNoise() {
+    playSound("sounds/sndNoise04.wav");
+    bulletManagerShoot(0);
+}
+
+function shootMgr1WNoise() {
+    playSound("sounds/sndNoise04.wav");
+    bulletManagerShoot(1);
+}
+
+function startAttack0() {
+    setBulletManagerTile(0, 1);
+    setBulletManagerAimType(0, AimCircle);
+    setBulletManagerCount(0, 8, 2);
+    setBulletManagerRadius(0, 9.0, 4.0);
+    setBulletManagerSpeed(0, 50.0, 90.0);
+    setBulletManagerHitmask(0, 1 | 2);
+    setBulletManagerHitRadius(0, 4.0);
+    setBulletManagerMoveType(0, MoveTypeFixed());
+    setBulletManagerAngle(0, 0.0, Math.degToRad(12.0));
+    i = 0;
+    attack0();
+}
+
+function attack0() {
+    float();
+    if (i > 2) {
+        enqueueMoveToByTime(LocalSpace(0.0, 40.0), 0.6, float);
+        return;
+    }
+    var x = [ -75.0, 75.0, 0.0 ];
+    var y = [ 104.0, 104.0, 79.0 ];
+    shootMgr0WNoise();
+    fly();
+    enqueueMoveToByTime(LocalSpace(x[i], y[i]), 0.3, attack0);
+    i++;
+}
+
+function startAttack1() {
+    setBulletManagerTile(0, 9);
+    setBulletManagerAimType(0, AimCircle);
+    setBulletManagerCount(0, 6, 3);
+    setBulletManagerRadius(0, 5.0, 1.0);
+    setBulletManagerSpeed(0, 50.0, 90.0);
+    setBulletManagerHitmask(0, 1 | 2);
+    setBulletManagerHitRadius(0, 4.0);
+    setBulletManagerMoveType(0, MoveTypeFixed(attack1Rotation));
+    setBulletManagerAngle(0, 0.0, Math.degToRad(24.0));
+    setBulletManagerTile(1, 14);
+    setBulletManagerAimType(1, AimEntityFan(player));
+    setBulletManagerCount(1, 5, 2);
+    setBulletManagerRadius(1, 5.0, 1.0);
+    setBulletManagerSpeed(1, 70.0, 100.0);
+    setBulletManagerHitmask(1, 1 | 2);
+    setBulletManagerHitRadius(1, 4.0);
+    setBulletManagerMoveType(1, MoveTypeFixed());
+    setBulletManagerAngle(1, 0.0, Math.degToRad(15.0));
+    fly();
+    enqueueMoveToByTime(LocalSpace(0.0, 20.0), 0.6, attack1);
+}
+
+function attack1Rotation() return Math.degToRad(8.0);
+
+function attack1() {
+    enqueueMoveToByTime(LocalSpace(0.0, 40.0), 0.2, float);
+    for (i in 0...25) {
+        if (i % 4 == 0) addEvent(getTime() + i * 0.24, shootMgr1WNoise);
+        else addEvent(getTime() + i * 0.24, shootMgr0WNoise);
+    }
+}
+
+function startSideToSideAttack() {
+    i = 0;
+    setBulletManagerTile(0, 17);
+    setBulletManagerAimType(0, AimRandomCircle);
+    setBulletManagerAngle(0, 0.0, Math.degToRad(15.0));
+    setBulletManagerSpeed(0, 30.0, 70.0);
+    beginSpecialAttack();
+    fly();
+    enqueueMoveToByTime(LocalSpace(0.0, 20.0), 0.6, sideToSideAttack);
+}
+
+function sideToSideAttack() {
+    if (i == 0) playSound("sounds/sndBulletHighLong.wav");
+    else if (i > 300) {
+        finishSideToSideAttack();
+        enqueueMoveToByTime(LocalSpace(0.0, 40.0), 0.6, float);
+        return;
+    }
+    if (i % 3 == 0) {
+        setBulletManagerCount(0, 4, 2);
+        setBulletManagerTile(0, 7);
+        setBulletManagerHitRadius(0, 4.0);
+    } else {
+        setBulletManagerCount(0, 8, 2);
+        setBulletManagerTile(0, 17);
+        setBulletManagerHitRadius(0, 2.0);
+    }
+    if (i % 2 == 0) setBulletManagerMoveType(0, MoveTypeFixed(sideAttackRotation1));
+    else setBulletManagerMoveType(0, MoveTypeFixed(sideAttackRotation2));
+    float();
+    shootMgr0WNoise();
+    enqueueMoveToByTime(LocalSpace(80.0 * (i % 2 ? -1.0 : 1.0), 40.0), 0.1, sideToSideAttack);
+    i++;
+}
+
+function sideAttackRotation1() return Math.degToRad(-25.0);
+function sideAttackRotation2() return Math.degToRad(25.0);
+
+function finishSideToSideAttack() {
+    float();
+    stopSpecialAttack();
+    destroyBulletManager(0);
+    createBulletManager(0);
+    loadBulletManagerBullets(0, "sprites/game/sprBullets01.xml");
+    setBulletManagerDestroyWithParent(0, true);
+    for (j in 0...32) spawnItem(ItemJoke, LocalSpace(Math.random(198.0) - 99.0, Math.random(80.0) + 60.0));
+    for (j in 0...16) spawnItem(ItemValue(100), LocalSpace(Math.random(198.0) - 99.0, getLocalY() + Math.random(-9.0)));
+    for (j in 0...8) spawnItem(ItemPower(0.16), LocalSpace(Math.random(198.0) - 99.0, getLocalY() + Math.random(-9.0)));
+}
+
+function setupAttack2() {
+    setBulletManagerTile(0, 21);
+    setBulletManagerAimType(0, AimFan);
+    setBulletManagerCount(0, 1, 6);
+    setBulletManagerRadius(0, 2.0, 5.0);
+    setBulletManagerSpeed(0, 80.0, 120.0);
+    setBulletManagerHitmask(0, 1 | 2);
+    setBulletManagerHitRadius(0, 4.0);
+    setBulletManagerMoveType(0, MoveTypeFixed());
+    setBulletManagerTile(1, 23);
+}
+
+function performAttack2() {
+    fly();
+    enqueueMoveToByTime(WorldSpace(player.x, getWorldY()), 0.15, shootAttack2);
+}
+
+function shootAttack2() {
+    angle = Math.PI;
+    i = 0;
+    float();
+    for (i in 0...16) addEvent(getTime() + i * 0.07, shootAttack2Bullet);
+}
+
+function shootAttack2Bullet() {
+    setBulletManagerAngle(0, angle, Math.degToRad(45.0));
+    shootMgr0WNoise();
+    angle -= Math.PI / 16;
+}
+
+function startLastAttack() {
+    enqueueMoveToByTime(WorldSpace(player.x, 30.0), 0.15);
+    setBulletManagerTile(0, 6);
+    setBulletManagerAimType(0, AimFan);
+    setBulletManagerAngle(0, Math.PI * 0.5, Math.degToRad(30.0));
+    setBulletManagerSpeed(0, 70.0, 120.0);
+    setBulletManagerCount(0, 4, 6);
+    setBulletManagerMoveType(0, MoveTypeFixed(sideAttackRotation1));
+    beginSpecialAttack(attack1Rotation);
+    fly();
+    enqueueMoveToByTime(LocalSpace(0.0, 60.0), 15.0, finish);
+    k = 0;
+    for (i in 0...50) {
+        if (i == 0) {
+            playSound("sounds/sndBulletHighLong.wav");
+            continue;
+        }
+        addEvent(getTime() + (i + 1) * 1.5, shootLastAttack);
+    }
+}
+
+function shootLastAttack() {
+    shootMgr0WNoise();
+    spawnEnemy(LocalSpace(-100.0, Math.random(120.0) + 20.0), "stages/stage01BossLastAttackSide.hscript", 0, 0, 0);
+    k++;
+}
+
+function finish() {
+    float();
+    showHealthbar();
+    setLayer(8);
+}
+
+function endFight() {
+    fly();
+    playSound("sounds/sndNoise05.wav");
+    setBulletManagerAimType(1, AimCircle);
+    setBulletManagerMoveType(1, MoveTypePosition(EntitySpace(this, 0.0, 0.0)));
+    setBulletManagerRadius(1, 32.0, 32.0);
+    setBulletManagerHitmask(1, 0);
+    setBulletManagerHitRadius(1, 0.0);
+    bulletManagerShoot(1);
+    addEvent(getTime() + 1.5, ending);
+}
+
+function ending() {
+    stopSpecialAttack();
+    destroy();
+}
+
+function wait() { }
+
+addEvent(3.0, start);
+addEvent(4.0, startAttack0);
+addEvent(6.0, startAttack0);
+addEvent(8.0, startAttack1);
+addEvent(16.0, startSideToSideAttack);
+addEvent(54.0, setupAttack2);
+addEvent(54.1, performAttack2);
+addEvent(57.0, performAttack2);
+addEvent(60.0, startLastAttack);
+addEvent(78.0, endFight);
+addEvent(90.0, wait);

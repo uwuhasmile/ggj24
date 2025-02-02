@@ -1,0 +1,18 @@
+<sprite>
+    <source>sprites/dialogue/sprDialogueJoe.png</source>
+    <anim id="0" speed="1.0">
+        <frame src="0" x="0" y="0" width="86" height="164" dx="-43" dy="-164"/>
+    </anim>
+    <anim id="1" speed="1.0">
+        <frame src="0" x="86" y="0" width="86" height="164" dx="-43" dy="-164"/>
+    </anim>
+    <anim id="2" speed="1.0">
+        <frame src="0" x="172" y="0" width="86" height="164" dx="-43" dy="-164"/>
+    </anim>
+    <anim id="3" spespeed="1.0">
+        <frame src="0" x="258" y="0" width="86" height="164" dx="-43" dy="-164"/>
+    </anim>
+    <anim id="4" spespeed="1.0">
+        <frame src="0" x="344" y="0" width="86" height="164" dx="-43" dy="-164"/>
+    </anim>
+</sprite>

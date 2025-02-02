@@ -1,0 +1,24 @@
+function shoot() {
+    createBulletManager(0);
+    loadBulletManagerBullets(0, "sprites/game/sprBullets01.xml");
+    setBulletManagerTile(0, 16);
+    setBulletManagerAimType(0, AimEntityFan(player));
+    setBulletManagerCount(0, 1, 1);
+    setBulletManagerAngle(0, 0.0, 0.0);
+    setBulletManagerSpeed(0, 60.0, 60.0);
+    setBulletManagerRadius(0, 0.0, 0.0);
+    setBulletManagerHitmask(0, 1 | 2);
+    setBulletManagerHitRadius(0, 2.0);
+    setBulletManagerMoveType(0, MoveTypeFixed());
+    bulletManagerShoot(0);
+}
+
+setSprite("sprites/stage01/sprEnemyMask.xml");
+setRadius(6.0);
+setMask(1 | 2);
+loadDamageParticles("particles/ptcEnemyDamage.json");
+loadDeathParticles("particles/ptcEnemyDamage.json");
+setDeathSound("sounds/sndNoise03.wav");
+enqueueMoveToBySpeed(LocalSpace(x0, y0), speed * 0.75);
+enqueueMoveToBySpeed(LocalSpace(x1, y1), speed, shoot);
+enqueueMoveToBySpeed(LocalSpace(x2, y2), speed * 1.25);

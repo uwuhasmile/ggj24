@@ -1,0 +1,76 @@
+setSprite("sprites/stage01/sprStage01Clown.xml");
+setRadius(20.0);
+setLayer(0);
+setMask(2);
+loadDamageParticles("particles/ptcEnemyDamage.json");
+loadDeathParticles("particles/ptcEnemyDamage.json");
+setDeathSound("sounds/sndNoise06.wav");
+enqueueMoveToByTime(LocalSpace(0.0, 50.0), 1.0);
+createBulletManager(0);
+loadBulletManagerBullets(0, "sprites/game/sprBullets01.xml");
+setBulletManagerTile(0, 7);
+setBulletManagerDestroyWithParent(0, true);
+setBulletManagerAimType(0, AimFan);
+setBulletManagerCount(0, 2, 2);
+setBulletManagerSpeed(0, 150.0, 50.0);
+setBulletManagerRadius(0, 8.0, 2.0);
+setBulletManagerHitmask(0, 1 | 2);
+setBulletManagerHitRadius(0, 2.0);
+setBulletManagerMoveType(0, MoveTypeFixed());
+createBulletManager(1);
+loadBulletManagerBullets(1, "sprites/game/sprBullets01.xml");
+setBulletManagerTile(1, 7);
+setBulletManagerDestroyWithParent(1, true);
+setBulletManagerAimType(1, AimFan);
+setBulletManagerCount(1, 2, 2);
+setBulletManagerSpeed(1, 150.0, 50.0);
+setBulletManagerRadius(1, 8.0, 2.0);
+setBulletManagerHitmask(1, 1 | 2);
+setBulletManagerHitRadius(1, 2.0);
+setBulletManagerMoveType(1, MoveTypeFixed());
+
+function start() {
+    setLayer(8);
+    setMask(1 | 2);
+    showHealthbar(45.0);
+    playSound("sounds/sndBulletHighLong.wav");
+    playAnimation(1);
+}
+
+var angle1 = (Math.PI * 0.5) - Math.degToRad(14.0);
+var angle2 = (Math.PI * 0.5) + Math.degToRad(14.0);
+
+function shoot() {
+    if (i == 0) playAnimation(2);
+    else if (i == 25) playAnimation(3);
+    playSound("sounds/sndNoise04.wav");
+    setBulletManagerAngle(0, angle1, Math.degToRad(14.0));
+    setBulletManagerAngle(1, angle2, Math.degToRad(14.0));
+    bulletManagerShoot(0);
+    bulletManagerShoot(1);
+    angle1 += Math.degToRad(29.9);
+    angle2 -= Math.degToRad(29.9);
+    i++;
+}
+
+function spawnJokes() {
+    for (j in 0...6) spawnItem(ItemJoke, LocalSpace(Math.random(198.0) - 99.0, 90.0));
+}
+
+function finish() {
+    setBulletManagerDestroyWithParent(0, false);
+    setLayer(0);
+    setMask(2);
+    playAnimation(4);
+    hideHealthbar();
+    moveToByTime(LocalSpace(0.0, -220.0), 2.0);
+}
+
+addEvent(1.4, start);
+for (i in 0...50) {
+    addEvent(2.3 + i * 0.34, shoot);
+    if (i % 10 == 0) addEvent(2.3 + i * 0.34, spawnJokes);
+    i++;
+}
+i = 0;
+addEvent(19.0, finish);

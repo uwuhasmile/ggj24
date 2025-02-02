@@ -1,0 +1,60 @@
+<background>
+<layer
+    idx="0"
+    src="backgrounds/bgStage01_0.png"
+    hScroll="-50"
+    vScroll="-50"
+    hScrollSpeed="5"
+    vScrollSpeed="5"
+    parallaxScale="0.2"
+    r="0.4" g="0.0" b="0.3"
+/>
+<layer
+    idx="1"
+    src="backgrounds/bgStage01_0.png"
+    hScrollSpeed="-5"
+    vScrollSpeed="-5"
+    parallaxScale="0.2"
+    r="0.2" g="0.0" b="0.5" a="0.4"
+/>
+<layer
+    idx="2"
+    src="backgrounds/bgStage01_1.png"
+    hScrollSpeed="0"
+    vScrollSpeed="9"
+    parallaxScale="0.5"
+    r="0.2" g="0.0" b="0.5" a="0.3"
+/>
+<layer
+    idx="3"
+    src="backgrounds/bgStage01_1.png"
+    hScrollSpeed="1.2"
+    vScrollSpeed="-9"
+    parallaxScale="0.7"
+    r="0.4" g="0.2" b="0.3" a="0.3"
+/>
+<layer
+    idx="4"
+    vScroll="-4620"
+    src="backgrounds/bgStage01_2.png"
+    parallaxScale="1.0"
+/>
+<layer
+    idx="5"
+    vScrollSpeed="50"
+    hScrollSpeed="-50"
+    src="backgrounds/bgStage01_3.png"
+    parallaxScale="1.0"
+    r="0.0" b="0.5" g="0.0" a="0.0"
+    followCamera="true"
+/>
+<layer
+    idx="6"
+    vScrollSpeed="-50"
+    hScrollSpeed="50"
+    src="backgrounds/bgStage01_3.png"
+    parallaxScale="1.0"
+    r="0.5" b="0.0" g="0.0" a="0.0"
+    followCamera="true"
+/>
+</background>

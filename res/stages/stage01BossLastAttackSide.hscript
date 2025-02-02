@@ -1,0 +1,19 @@
+setLayer(0);
+setRadius(0.0);
+createBulletManager(0);
+loadBulletManagerBullets(0, "sprites/game/sprBullets01.xml");
+setBulletManagerTile(0, 3);
+setBulletManagerAimType(0, AimCircle);
+setBulletManagerCount(0, 12, 3);
+setBulletManagerRadius(0, 6.0, 9.0);
+setBulletManagerSpeed(0, 80.0, 90.0);
+setBulletManagerHitmask(0, 1 | 2);
+setBulletManagerHitRadius(0, 2.0);
+setBulletManagerMoveType(0, MoveTypeFixed());
+setBulletManagerAngle(0, 0.0, Math.degToRad(2.0));
+setBulletManagerDestroyWithParent(0, true);
+bulletManagerShoot(0);
+
+function wait() { }
+
+addEvent(30.0, wait);

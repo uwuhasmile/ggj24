@@ -1,0 +1,170 @@
+setLayer(0);
+
+loadBackground("backgrounds/bgStage01.xml");
+
+setCameraVelocity(0.0, -40.0);
+
+function levelStart() {
+    playMusic("sounds/musStage01.wav");
+}
+
+function wave0() {
+    setPreparedParam("speed", 75.0);
+    setPreparedParam("x0", 0.0);
+    setPreparedParam("y0", 70.0);
+    setPreparedParam("x1", 0.0);
+    setPreparedParam("y1", 80.0);
+    var rnd = Std.random();
+    if (rnd == 0) setPreparedParam("x2", -120.0);
+    else setPreparedParam("x2", 120.0);
+    setPreparedParam("y2", 100.0);
+    spawnEnemy(LocalSpace(0.0, -20.0), "stages/stage01Mask01.hscript", 1, 50, 1, null, maskDeath);
+    clearPreparedParams();
+}
+
+function wave1() {
+    setPreparedParam("speed", 75.0);
+    setPreparedParam("x0", -50.0);
+    setPreparedParam("y0", 50.0);
+    setPreparedParam("x1", -65.0);
+    setPreparedParam("y1", 90.0);
+    setPreparedParam("x2", -120.0);
+    setPreparedParam("y2", 190.0);
+    spawnEnemy(LocalSpace(-80.0, -20.0), "stages/stage01Mask01.hscript", 1, 50, 1, null, maskDeath);
+    setPreparedParam("x0", 50.0);
+    setPreparedParam("y0", 50.0);
+    setPreparedParam("x1", 65.0);
+    setPreparedParam("y1", 90.0);
+    setPreparedParam("x2", 120.0);
+    setPreparedParam("y2", 190.0);
+    spawnEnemy(LocalSpace(80.0, -20.0), "stages/stage01Mask01.hscript", 1, 50, 1, null, maskDeath);
+    clearPreparedParams();
+}
+
+function wave2() {
+    setPreparedParam("speed", 75.0);
+    setPreparedParam("x0", Math.random(198.0) - 99.0);
+    setPreparedParam("y0", 80.0);
+    setPreparedParam("x1", Math.random(198.0) - 99.0);
+    setPreparedParam("y1", Math.random(70.0) + 70.0);
+    setPreparedParam("x2", Math.random(198.0) - 99.0);
+    setPreparedParam("y2", 190.0);
+    spawnEnemy(LocalSpace(Math.random(198.0) - 99.0, -20.0), "stages/stage01Mask01.hscript", 1, 50, 1, null, maskDeath);
+    clearPreparedParams();
+}
+
+function wave3() {
+    setPreparedParam("speed", 115.0);
+    setPreparedParam("x0", Math.random(198.0) - 99.0);
+    setPreparedParam("y0", 80.0);
+    setPreparedParam("x1", Math.random(198.0) - 99.0);
+    setPreparedParam("y1", Math.random(70.0) + 70.0);
+    setPreparedParam("x2", Math.random(198.0) - 99.0);
+    setPreparedParam("y2", 190.0);
+    spawnEnemy(LocalSpace(Math.random(198.0) - 99.0, -20.0), "stages/stage01Mask01.hscript", 1, 50, 1, null, maskDeath);
+    clearPreparedParams();
+}
+
+function wave4() {
+    spawnEnemy(LocalSpace(103.0, -20.0), "stages/stage01UwuSphere.hscript", 20, 100, 2);
+    spawnEnemy(LocalSpace(-103.0, -20.0), "stages/stage01UwuSphere.hscript", 20, 100, 2);
+}
+
+function clown() {
+    spawnEnemy(LocalSpace(190, 25.0), "stages/stage01Clown.hscript", 500, 1000, 25, null, addIntermediate);
+}
+
+function addIntermediate() {
+    addEvent(52.0, spawnIntermediate);
+    addEvent(54.0, spawnIntermediate);
+    addEvent(56.0, spawnIntermediate);
+    addEvent(58.0, spawnIntermediate);
+    addEvent(60.0, spawnIntermediate);
+    addEvent(62.0, spawnIntermediate);
+}
+
+function spawnIntermediate() {
+    setPreparedParam("speed", 80.0);
+    for (i in 0...4) {
+        setPreparedParam("x0", Math.random(198.0) - 99.0);
+        setPreparedParam("y0", 80.0);
+        setPreparedParam("x1", Math.random(198.0) - 99.0);
+        setPreparedParam("y1", Math.random(70.0) + 70.0);
+        setPreparedParam("x2", Math.random(198.0) - 99.0);
+        setPreparedParam("y2", 190.0);
+        spawnEnemy(LocalSpace(Math.random(198.0) - 99.0, -20.0), "stages/stage01Mask01.hscript", 1, 50, 1, null, maskDeath);
+    }
+    clearPreparedParams();
+}
+
+function wave5Masks() {
+    setPreparedParam("speed", 75.0);
+    setPreparedParam("x0", Math.random(198.0) - 99.0);
+    setPreparedParam("y0", 80.0);
+    setPreparedParam("x1", Math.random(198.0) - 99.0);
+    setPreparedParam("y1", Math.random(70.0) + 70.0);
+    setPreparedParam("x2", Math.random(198.0) - 99.0);
+    setPreparedParam("y2", 190.0);
+    spawnEnemy(LocalSpace(Math.random(198.0) - 99.0, -20.0), "stages/stage01Mask02.hscript", 20, 100, 2, null, maskDeath);
+    clearPreparedParams();
+}
+
+function wave5UwUSpheres() {
+    for (j in 0...2) spawnEnemy(LocalSpace(Math.random(206.0) - 103.0, -20.0), "stages/stage01UwuSphere.hscript", 20, 100, 2);
+}
+
+function eyes() {
+    playSound("sounds/sndTriangle01.wav");
+    for (i in 0...4) spawnEnemy(LocalSpace(Math.random(198.0) - 99.0, Math.random(120.0) + 40.0), "stages/stage01Eye.hscript", 20, 100, 2, maskDeath);
+}
+
+function maskDeath(enemy) {
+    for (j in 0...2) spawnItem(ItemJoke, WorldSpace(enemy.x, enemy.y));
+}
+
+function dialogue() {
+    startDialogue("data/dialogues/dlgStage01Pre.xml", null, bossMusic);
+}
+
+function boss() {
+    spawnEnemy(LocalSpace(130.0, 0.0), "stages/stage01Boss.hscript", 1000, 1000, 0, bossDeath);
+}
+
+function bossMusic() {
+    playMusic("sounds/musStage01Boss.wav");
+}
+
+function stopMoving() {
+    setCameraVelocity(0.0, 0.0, 0.2);
+}
+
+function bossDeath() {
+    for (j in 0...32) spawnItem(ItemJoke, LocalSpace(Math.random(198.0) - 99.0, Math.random(80.0) + 60.0));
+    for (j in 0...16) spawnItem(ItemValue(100), LocalSpace(Math.random(198.0) - 99.0, 40.0 + Math.random(-9.0)));
+    for (j in 0...8) spawnItem(ItemPower(0.16), LocalSpace(Math.random(198.0) - 99.0, 45.0 + Math.random(-9.0)));
+    playSound("sounds/sndNoise06.wav");
+    addEvent(getTime() + 2.0, ending);
+}
+
+function ending() {
+    startDialogue("data/dialogues/dlgStage01Post.xml", null, destroy);
+}
+
+function wait() { }
+
+addEvent(2.0, levelStart);
+for (i in 0...3) addEvent(2.0 + i * 0.6, wave0);
+for (i in 0...4) addEvent(8.0 + i * 0.45, wave1);
+for (i in 0...8) addEvent(14.0 + i, wave2);
+for (i in 0...13) addEvent(27.0 + i * 0.87, wave3);
+addEvent(39.0, wave4);
+addEvent(45.0, clown);
+for (i in 0...16) {
+    addEvent(67.0 + i, wave5Masks);
+    if (i > 0 && i % 8 == 0) addEvent(67.0 + i * 0.6, wave5UwUSpheres);
+}
+addEvent(90.0, eyes);
+addEvent(92.8, boss);
+addEvent(93.0, stopMoving);
+addEvent(94.0, dialogue);
+addEvent(190.0, wait);

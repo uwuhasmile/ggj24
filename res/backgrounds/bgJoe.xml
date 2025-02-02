@@ -1,0 +1,20 @@
+<background>
+<layer
+    idx="0"
+    src="backgrounds/bgStage01_0.png"
+    hScroll="-50"
+    vScroll="-50"
+    hScrollSpeed="0.0"
+    vScrollSpeed="-25"
+    parallaxScale="0.2"
+    r="0.2" g="0.0" b="0.6"
+/>
+<layer
+    idx="1"
+    src="backgrounds/bgStage01_0.png"
+    hScrollSpeed="-25"
+    vScrollSpeed="0"
+    parallaxScale="0.2"
+    r="0.7" g="0.0" b="0.4" a="0.6"
+/>
+</background>

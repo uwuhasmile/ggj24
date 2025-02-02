@@ -1,0 +1,13 @@
+<dialogue bg="backgrounds/bgJoe.xml" autoHide="false">
+    <character src="sprites/dialogue/sprDialogueJoe.xml">Joe</character>
+    <phrase you="true" emotion="1">I told you.</phrase>
+    <phrase you="false">Ngahhh...</phrase>
+    <phrase you="true">Yes, I know, you're disappointed.</phrase>
+    <phrase you="false">...</phrase>
+    <phrase emotion="2">You know what?</phrase>
+    <phrase emotion="4">I'll join your humor team.</phrase>
+    <phrase you="true">Okay, that was surprising.</phrase>
+    <phrase you="false" emotion="0">Don't count on me too much though.</phrase>
+    <phrase emotion="1">I'm bad at it.</phrase>
+    <phrase you="true" emotion="4">Sure...</phrase>
+</dialogue>

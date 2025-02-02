@@ -1,0 +1,20 @@
+-cp src/
+
+-lib heaps
+-lib hscript
+
+--each
+
+-hl build.pak.hl
+-m hxd.fmt.pak.Build
+
+--cmd hl build.pak.hl -out build/res
+
+--next
+
+-js build/game.js
+-m Main
+--debug
+
+-D hscriptPos
+--dce no

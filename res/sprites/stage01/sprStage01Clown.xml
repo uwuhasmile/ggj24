@@ -1,0 +1,43 @@
+<sprite>
+    <source>sprites/stage01/sprStage01Clown.png</source>
+    <anim id="0" speed="13.0" loop="true">
+        <frame src="0" x="0" y="0" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="48" y="0" width="48" height="48" dx="-24" dy="-24"/>
+    </anim>
+    <anim id="1" speed="13.0" loop="true">
+        <frame src="0" x="0" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="48" y="48" width="48" height="48" dx="-24" dy="-24"/>
+    </anim>
+    <anim id="2" speed="13.0" loop="true">
+        <frame src="0" x="0" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="48" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="0" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="48" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="96" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="144" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="96" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="144" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="192" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="240" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="192" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="240" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="288" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="336" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="288" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="336" y="48" width="48" height="48" dx="-24" dy="-24"/>
+    </anim>
+    <anim id="3" speed="13.0" loop="true">
+        <frame src="0" x="0" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="48" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="96" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="144" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="192" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="240" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="288" y="48" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="336" y="48" width="48" height="48" dx="-24" dy="-24"/>
+    </anim>
+    <anim id="4" speed="13.0" loop="true">
+        <frame src="0" x="0" y="96" width="48" height="48" dx="-24" dy="-24"/>
+        <frame src="0" x="48" y="96" width="48" height="48" dx="-24" dy="-24"/>
+    </anim>
+</sprite>
